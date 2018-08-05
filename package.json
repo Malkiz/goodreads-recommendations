@@ -9,8 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "4.16.3",
-    "goodreads-api-node": "0.0.9",
     "lodash": "4.17.10",
     "puppeteer": "1.6.2"
   }

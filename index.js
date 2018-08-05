@@ -1,43 +1,12 @@
 
-/*const goodreads = require('goodreads-api-node');
-const myCredentials = {
-  key: 'sjL1i9sRRHOO0DnjAxvJ2Q',
-  secret: 'FK4uhyqdG4TgpKhUHwiz4SBX8kA6oNZjxPQt4Z8hKg'
-};
 
-const gr = goodreads(myCredentials);*/
-
-/*var http = require('http');
-var https = require('https');
-var express = require('express');
-var app = express();
-
-app.get('/auth_user', function (req, res) {
-	doAuth();
-	res.send('fetching...');
-});
-
-var httpServer = http.createServer(app);
-httpServer.listen(8080);
-*/
 const puppeteer = require('puppeteer');
 var browser;
 var page;
 
 const _ = require('lodash');
 
-/*gr.initOAuth('http://localhost:8080/auth_user/');
-gr.getRequestToken()
-.then(console.log);
-*/
 const userID = 24662006;
-
-/*function doAuth() {
-	console.log('fetching...');
-	return gr.getAccessToken()
-	.then(() => getData(userID))
-}
-*/
 
 getData(userID);
 
@@ -48,53 +17,11 @@ async function getData(user_id) {
 	return getAllRatedBooksForUser(userID)
 	.then(getMatchingReviews)
 	.then(getRecommendations)
-	// .then(res => scrape(res.books.book[0].link, () => jQuery('[id^="review_"]').get().map(e => e.id.replace('review_', ''))))
-	// .then(res => gr.getReview(res[0]))
-	// .then(res => gr.getUserInfo(res.review.user.id))
-	// .then(res => gr.getBooksOnUserShelf(res.id, res.user_shelves.user_shelf[0].name/*, [queryOptions]*/)
-	// 	.then(res2 => gr.getUsersReviewForBook(res.id, res2.books.book[0].id._))
-	// )
 	.then(console.log)
 	.catch(console.log)
 	.then(() => browser.close())
 	.then(() => process.exit());
 }
-
-/*function getAllRatedBooksForUser(user_id) {
-	return getAllUserBooks(user_id)
-	.then(res => Promise.all(res.map(book => gr.getUsersReviewForBook(user_id, book.id))))
-	.then(results => results.reduce((arr, res) => arr.concat(res.review), [])
-		.map(mapReviewObj)
-		.filter(review => review.rating !== 0))
-}
-
-function getAllUserBooks(user_id) {
-	return gr.getUserInfo(user_id)
-	.then(res => Promise.all(res.user_shelves.user_shelf
-		.map(shelf => gr.getBooksOnUserShelf(user_id, shelf.name))
-	))
-	.then(results => _.uniqBy(
-		results.reduce((arr, res) => arr.concat(res.books.book), [])
-		.map(mapBookObj), 'id'))
-}
-
-function mapBookObj(book) {
-	return {
-		id: book.id._,
-		title: book.title,
-		link: book.link
-	};
-}
-
-function mapReviewObj(review) {
-	return {
-		id: review.id,
-		user_id: review.user.id,
-		book_id: review.book.id._,
-		link: review.link,
-		rating: Number(review.rating)
-	};
-}*/
 
 async function getAllRatedBooksForUser(user_id) {
 	var page = 1;
